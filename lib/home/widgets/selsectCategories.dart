@@ -15,7 +15,7 @@ class selsectCategories extends StatelessWidget {
       },
       builder: (context, state) {
         return SizedBox(
-          height: 40,
+          height: 30,
           child: ListView(
             scrollDirection: Axis.horizontal,
             children: [
@@ -70,14 +70,11 @@ class SelsectCategoriesitem extends StatelessWidget {
       padding: const EdgeInsets.only(left: 10.0, right: 5),
       child: GestureDetector(
         onTap: () {
-          print("enter");
           var cubit = BlocProvider.of<Categorecubit>(context);
           if (!cubit.getornot[category]!) {
-            print("enter1");
             BlocProvider.of<Categorecubit>(context).changecategors(i: index);
             cubit.getcategory(category: category, index: index);
           } else {
-            print("enter2");
             BlocProvider.of<Categorecubit>(context).changecategors(i: index);
             cubit.changecategorswithdata(category: category);
           }
@@ -89,6 +86,7 @@ class SelsectCategoriesitem extends StatelessWidget {
           height: 40,
           width: MediaQuery.sizeOf(context).width * 0.3,
           decoration: BoxDecoration(
+            border: Border.all(color: Color.fromARGB(255, 182, 222, 255)),
             color: isactive ? Colors.blue : Colors.grey.withOpacity(0.2),
             borderRadius: BorderRadius.circular(20),
           ),
@@ -99,9 +97,11 @@ class SelsectCategoriesitem extends StatelessWidget {
               children: [
                 Text(
                   title,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                       color: isactive ? Colors.white : Colors.grey,
-                      fontSize: 10,
+                      fontSize: 12,
                       fontWeight: FontWeight.w700),
                 )
               ],

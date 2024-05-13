@@ -11,8 +11,6 @@ import 'package:null_project/home/cubits/managenotificationCubit/managenotificat
 import 'package:null_project/home/home.dart';
 import 'package:null_project/loginAndRegister/cubits/logincubit/cubit.dart';
 import 'package:null_project/loginAndRegister/cubits/registercubit/cubit.dart';
-import 'package:null_project/onboard/Screens/onboardHome.dart';
-
 import 'package:paymob_payment/paymob_payment.dart';
 
 void main() async {

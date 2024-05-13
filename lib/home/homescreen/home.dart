@@ -8,6 +8,7 @@ import 'package:null_project/home/cubits/categories/states.dart';
 import 'package:null_project/home/homescreen/displayallcategories.dart';
 import 'package:null_project/home/homescreen/displayallproduct.dart';
 import 'package:null_project/home/homescreen/notification.dart';
+import 'package:null_project/home/homescreen/search.dart';
 import 'package:null_project/home/model/productmodel.dart';
 import 'package:null_project/home/widgets/customproductitem.dart';
 import 'package:null_project/home/widgets/customslider.dart';
@@ -153,9 +154,8 @@ class _homepageState extends State<homepage> {
                   color: Color.fromARGB(255, 57, 156, 238),
                 ),
                 onPressed: () {
-                  key.currentState!.closeDrawer();
-                  BlocProvider.of<NavBarcubit>(context).changescreen(index: 3);
-                  BlocProvider.of<NavBarcubit>(context).currentindex = 3;
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => searchpage()));
                 }),
             Darweritem(
                 logout: false,
@@ -190,8 +190,8 @@ class _homepageState extends State<homepage> {
                 ),
                 onPressed: () {
                   key.currentState!.closeDrawer();
-                  BlocProvider.of<NavBarcubit>(context).changescreen(index: 4);
-                  BlocProvider.of<NavBarcubit>(context).currentindex = 4;
+                  BlocProvider.of<NavBarcubit>(context).changescreen(index: 3);
+                  BlocProvider.of<NavBarcubit>(context).currentindex = 3;
                 }),
             const Spacer(),
             const Spacer(),
@@ -222,18 +222,33 @@ class _homepageState extends State<homepage> {
                         padding: const EdgeInsets.symmetric(horizontal: 8.0),
                         child: TextField(
                           onTap: () {
-                            BlocProvider.of<NavBarcubit>(context).currentindex =
-                                3;
-                            BlocProvider.of<NavBarcubit>(context)
-                                .changescreen(index: 3);
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => searchpage()));
                           },
                           decoration: InputDecoration(
+                            suffixIcon: SizedBox(
+                              width: 40,
+                              child: Row(
+                                children: [
+                                  const Padding(
+                                    padding: EdgeInsets.only(right: 10.0),
+                                    child: VerticalDivider(
+                                      width: 1,
+                                      color: Colors.blue,
+                                    ),
+                                  ),
+                                  Image.asset("assets/images/icon/Search.png"),
+                                ],
+                              ),
+                            ),
                             hintText: "Enter the Name of product ",
                             contentPadding: const EdgeInsets.only(
                                 left: 10, top: 0, bottom: 0, right: 0),
                             filled: true,
                             fillColor: Colors.blue.withOpacity(0.05),
-                            border: const OutlineInputBorder(
+                            focusedBorder: const OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.blue),
                               borderRadius: BorderRadius.all(
                                 Radius.circular(10),
@@ -242,30 +257,6 @@ class _homepageState extends State<homepage> {
                           ),
                         ),
                       )),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 8.0),
-                        child: Container(
-                          height: 45,
-                          width: 45,
-                          decoration: BoxDecoration(
-                              border: Border.all(color: Colors.black, width: 1),
-                              color: Colors.blue.withOpacity(0.05),
-                              borderRadius: BorderRadius.circular(10)),
-                          child: IconButton(
-                            onPressed: () {
-                              // BlocProvider.of<NavBarcubit>(context).currentindex =
-                              //     3;
-                              // BlocProvider.of<NavBarcubit>(context)
-                              //     .changescreen(index: 3);
-                            },
-                            icon: const Icon(
-                              FontAwesomeIcons.bars,
-                              color: Color.fromARGB(255, 74, 171, 251),
-                              size: 20,
-                            ),
-                          ),
-                        ),
-                      )
                     ],
                   ),
                 ),
@@ -334,12 +325,3 @@ class _homepageState extends State<homepage> {
     );
   }
 }
-/*
-Column(
-          children: [
-            
-            
-            
-          ],
-        ),
-       */

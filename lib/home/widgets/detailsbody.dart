@@ -4,8 +4,6 @@ import 'package:null_project/constant.dart';
 import 'package:null_project/home/homescreen/detailsscreen/buypage.dart';
 import 'package:null_project/home/model/productmodel.dart';
 import 'package:null_project/home/widgets/SelectColor.dart';
-import 'package:null_project/home/widgets/custombuttonforbuy.dart';
-import 'package:null_project/home/widgets/selectSize.dart';
 
 class Detailsbody extends StatefulWidget {
   const Detailsbody({super.key, required this.model});
@@ -29,15 +27,17 @@ class _DetailsbodyState extends State<Detailsbody> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 20.0, bottom: 20),
-                    child: Container(
-                      height: MediaQuery.sizeOf(context).height * 0.5,
-                      width: MediaQuery.sizeOf(context).width * 0.8,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
+                  Center(
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 20.0, bottom: 20),
+                      child: Container(
+                        height: MediaQuery.sizeOf(context).height * 0.5,
+                        width: MediaQuery.sizeOf(context).width * 0.8,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Image.network(height: 150, widget.model.image),
                       ),
-                      child: Image.network(height: 150, widget.model.image),
                     ),
                   ),
                   SizedBox(
