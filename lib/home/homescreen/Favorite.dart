@@ -4,7 +4,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lottie/lottie.dart';
 import 'package:null_project/home/cubits/manageLOVEandCARD.dart/manageloveandcardcubit.dart';
 import 'package:null_project/home/cubits/manageLOVEandCARD.dart/manageloveandcardstates.dart';
-import 'package:null_project/home/model/productmodel.dart';
 import 'package:null_project/home/widgets/customproductitem.dart';
 import 'package:null_project/home/widgets/itemList.dart';
 import 'package:null_project/home/widgets/itemgrid.dart';
