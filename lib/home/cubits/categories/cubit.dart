@@ -1,9 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:null_project/home/cubits/categories/states.dart';
-import 'package:http/http.dart' as http;
 import 'package:null_project/home/model/productmodel.dart';
-import 'package:null_project/loginAndRegister/cubits/logincubit/states.dart';
 
 class Categorecubit extends Cubit<categoriesStates> {
   Categorecubit() : super(initstate());
@@ -42,8 +40,7 @@ class Categorecubit extends Cubit<categoriesStates> {
       emit(Loading());
       List<productmodel> result = [];
       Dio dio = Dio();
-      Response<dynamic> l =
-          await dio.get("https://fakestoreapi.com/products/category/$category");
+      Response<dynamic> l =await dio.get("https://fakestoreapi.com/products/category/$category");
 
       for (var element in l.data) {
         result.add(productmodel.fromjson(element));
