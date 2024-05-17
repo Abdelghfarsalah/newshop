@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:null_project/constant.dart';
 import 'package:null_project/home/home.dart';
 import 'package:null_project/loginAndRegister/cubits/logincubit/states.dart';
 import 'package:null_project/loginAndRegister/cubits/registercubit/cubit.dart';
@@ -17,7 +18,7 @@ class register extends StatefulWidget {
 }
 
 class _registerState extends State<register> {
-  String emial = "";
+  String email = "";
 
   String password = "";
   String lastname = "";
@@ -101,7 +102,7 @@ class _registerState extends State<register> {
                             }
                           },
                           onChanged: (data) {
-                            emial = data;
+                            email = data;
                           },
                           password: false,
                           label: const Text("Email"),
@@ -152,12 +153,16 @@ class _registerState extends State<register> {
                         onTap: () {
                           if (keyform.currentState!.validate()) {
                             usermodel model = usermodel(
-                                email: emial,
+                                email: email,
                                 lastname: lastname,
                                 firstname: firstname,
                                 password: password);
                             BlocProvider.of<registercubit>(context)
                                 .registernew(user: model);
+                            // useremail = email;
+                            // userfirstname = firstname;
+                            // userlastname = lastname;
+                            // userpassword = password;
                           }
                         },
                         text: "Register");
@@ -181,8 +186,8 @@ class _registerState extends State<register> {
                         backgroundColor: Colors.blue,
                         textColor: Colors.white,
                         fontSize: 16.0);
-                    Navigator.of(context)
-                        .push(MaterialPageRoute(builder: (context) => home()));
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => const home()));
                   }
                 }),
                 const SizedBox(
@@ -203,7 +208,7 @@ class _registerState extends State<register> {
                     Expanded(
                       child: Divider(
                         color: Colors.grey,
-                        endIndent: 0,
+                        endIndent: 10,
                         indent: 5,
                         thickness: 2,
                         height: 10,

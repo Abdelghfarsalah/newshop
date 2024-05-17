@@ -1,20 +1,21 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:null_project/home/cubits/bottomNavBar/cubit.dart';
 import 'package:null_project/home/cubits/categories/cubit.dart';
 import 'package:null_project/home/cubits/categories/states.dart';
-import 'package:null_project/home/homescreen/displayallcategories.dart';
 import 'package:null_project/home/homescreen/displayallproduct.dart';
 import 'package:null_project/home/homescreen/notification.dart';
 import 'package:null_project/home/homescreen/search.dart';
-import 'package:null_project/home/model/productmodel.dart';
+import 'package:null_project/home/widgets/Draweritem.dart';
 import 'package:null_project/home/widgets/customproductitem.dart';
-import 'package:null_project/home/widgets/customslider.dart';
-import 'package:null_project/home/widgets/darweritem.dart';
+import 'package:null_project/home/widgets/loadingconatiner.dart';
 import 'package:null_project/home/widgets/selsectCategories.dart';
-import 'package:null_project/loginAndRegister/cubits/logincubit/states.dart';
+import 'package:null_project/loginAndRegister/Login.dart';
+import 'package:shimmer/shimmer.dart';
 
 class homepage extends StatefulWidget {
   const homepage({super.key});
@@ -27,7 +28,6 @@ class _homepageState extends State<homepage> {
   GlobalKey<ScaffoldState> key = GlobalKey();
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
   }
 
@@ -69,19 +69,19 @@ class _homepageState extends State<homepage> {
           ),
         ),
         actions: [
-          GestureDetector(
-              onTap: () {},
-              child: CircleAvatar(
-                radius: 20,
-                backgroundColor: Colors.grey.withOpacity(0.2),
-                child: const Image(
-                  height: 20,
-                  image: AssetImage("assets/images/icon/shopping bag.png"),
-                ),
-              )),
-          const SizedBox(
-            width: 10,
-          ),
+          // GestureDetector(
+          //     onTap: () {},
+          //     child: CircleAvatar(
+          //       radius: 20,
+          //       backgroundColor: Colors.grey.withOpacity(0.2),
+          //       child: const Image(
+          //         height: 20,
+          //         image: AssetImage("assets/images/icon/shopping bag.png"),
+          //       ),
+          //     )),
+          // const SizedBox(
+          //   width: 10,
+          // ),
           GestureDetector(
             onTap: () {
               Navigator.push(
@@ -132,7 +132,7 @@ class _homepageState extends State<homepage> {
                 ],
               ),
             ),
-            Darweritem(
+            Draweritem(
                 logout: false,
                 title: "All Product",
                 icon: const Icon(
@@ -146,7 +146,7 @@ class _homepageState extends State<homepage> {
                       MaterialPageRoute(
                           builder: (context) => const Displayallproduct()));
                 }),
-            Darweritem(
+            Draweritem(
                 logout: false,
                 title: "Search",
                 icon: const Icon(
@@ -157,7 +157,7 @@ class _homepageState extends State<homepage> {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => searchpage()));
                 }),
-            Darweritem(
+            Draweritem(
                 logout: false,
                 title: "Cart",
                 icon: const Icon(
@@ -169,7 +169,7 @@ class _homepageState extends State<homepage> {
                   BlocProvider.of<NavBarcubit>(context).changescreen(index: 2);
                   BlocProvider.of<NavBarcubit>(context).currentindex = 2;
                 }),
-            Darweritem(
+            Draweritem(
                 logout: false,
                 title: "Favorite",
                 icon: const Icon(
@@ -181,7 +181,7 @@ class _homepageState extends State<homepage> {
                   BlocProvider.of<NavBarcubit>(context).changescreen(index: 1);
                   BlocProvider.of<NavBarcubit>(context).currentindex = 1;
                 }),
-            Darweritem(
+            Draweritem(
                 logout: false,
                 title: "Setting",
                 icon: const Icon(
@@ -195,15 +195,24 @@ class _homepageState extends State<homepage> {
                 }),
             const Spacer(),
             const Spacer(),
-            Darweritem(
+            Draweritem(
                 title: "Log Out",
                 logout: true,
                 icon: const Icon(
                   FontAwesomeIcons.rightFromBracket,
                   color: Colors.red,
                 ),
-                onPressed: () {}),
-            Spacer(),
+                onPressed: () {
+                  Navigator.pop(context);
+                  Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(builder: (context) => login()),
+                      (predicate) => false);
+                  Fluttertoast.showToast(
+                      backgroundColor: Colors.blue,
+                      msg: "Logout completed successfully");
+                }),
+            const Spacer(),
           ],
         ),
       ),
@@ -230,25 +239,15 @@ class _homepageState extends State<homepage> {
                           decoration: InputDecoration(
                             suffixIcon: SizedBox(
                               width: 40,
-                              child: Row(
-                                children: [
-                                  const Padding(
-                                    padding: EdgeInsets.only(right: 10.0),
-                                    child: VerticalDivider(
-                                      width: 1,
-                                      color: Colors.blue,
-                                    ),
-                                  ),
+                              child:
                                   Image.asset("assets/images/icon/Search.png"),
-                                ],
-                              ),
                             ),
                             hintText: "Enter the Name of product ",
                             contentPadding: const EdgeInsets.only(
                                 left: 10, top: 0, bottom: 0, right: 0),
                             filled: true,
                             fillColor: Colors.blue.withOpacity(0.05),
-                            focusedBorder: const OutlineInputBorder(
+                            border: const OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.blue),
                               borderRadius: BorderRadius.all(
                                 Radius.circular(10),
@@ -298,7 +297,7 @@ class _homepageState extends State<homepage> {
                   child: SizedBox(
                     height: MediaQuery.sizeOf(context).height * 0.8,
                     child: ListView.builder(
-                      physics: BouncingScrollPhysics(),
+                      physics: const BouncingScrollPhysics(),
                       itemCount: state.res.length,
                       itemBuilder: (context, index) => customproductitem(
                         cart: false,
@@ -310,13 +309,47 @@ class _homepageState extends State<homepage> {
                 );
               } else {
                 return SizedBox(
-                  height: MediaQuery.sizeOf(context).height * 0.8,
-                  child: const Center(
-                    child: CircularProgressIndicator(
-                      color: Colors.blue,
-                    ),
-                  ),
-                );
+                    width: double.infinity,
+                    height: MediaQuery.sizeOf(context).height * 0.8,
+                    child: ListView(
+                      children: [
+                        Shimmer.fromColors(
+                            baseColor: Colors.grey.shade300,
+                            highlightColor: Colors.grey.shade100,
+                            enabled: true,
+                            child: const loadingconatiner()),
+                        Shimmer.fromColors(
+                            baseColor: Colors.grey.shade300,
+                            highlightColor: Colors.grey.shade100,
+                            enabled: true,
+                            child: const loadingconatiner()),
+                        Shimmer.fromColors(
+                            baseColor: Colors.grey.shade300,
+                            highlightColor: Colors.grey.shade100,
+                            enabled: true,
+                            child: const loadingconatiner()),
+                        Shimmer.fromColors(
+                            baseColor: Colors.grey.shade300,
+                            highlightColor: Colors.grey.shade100,
+                            enabled: true,
+                            child: const loadingconatiner()),
+                        Shimmer.fromColors(
+                            baseColor: Colors.grey.shade300,
+                            highlightColor: Colors.grey.shade100,
+                            enabled: true,
+                            child: const loadingconatiner()),
+                        Shimmer.fromColors(
+                            baseColor: Colors.grey.shade300,
+                            highlightColor: Colors.grey.shade100,
+                            enabled: true,
+                            child: const loadingconatiner()),
+                        Shimmer.fromColors(
+                            baseColor: Colors.grey.shade300,
+                            highlightColor: Colors.grey.shade100,
+                            enabled: true,
+                            child: const loadingconatiner()),
+                      ],
+                    ));
               }
             },
           ),

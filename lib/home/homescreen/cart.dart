@@ -4,8 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lottie/lottie.dart';
 import 'package:null_project/home/cubits/manageLOVEandCARD.dart/manageloveandcardcubit.dart';
 import 'package:null_project/home/cubits/manageLOVEandCARD.dart/manageloveandcardstates.dart';
-import 'package:null_project/home/model/productmodel.dart';
-import 'package:null_project/home/widgets/itemList.dart';
+import 'package:null_project/home/widgets/customproductitem.dart';
 import 'package:null_project/home/widgets/itemgrid.dart';
 
 class three extends StatefulWidget {
@@ -71,50 +70,53 @@ class _threeState extends State<three> {
           ),
         ],
       ),
-      body: Column(
-        children: [
-          BlocConsumer<ManageLove_Cart_states_cubit, magnageLoveAndCartState>(
-            builder: (context, state) {
-              return cubit.cartItem.length == 0
-                  ? Center(
-                      child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Lottie.asset("assets/animaitons/cartempty.json"),
-                      ],
-                    ))
-                  : islist
-                      ? Expanded(
-                          child: ListView.builder(
-                            itemCount: cubit.cartItem.length,
-                            itemBuilder: (context, index) => itemlist(
-                              isfavorite: false,
-                              cart: false,
-                              index: index,
-                              model: cubit.cartItem[index],
-                            ),
-                          ),
-                        )
-                      : Expanded(
-                          child: GridView.builder(
-                            itemCount: cubit.cartItem.length,
-                            itemBuilder: (context, index) => Hero(
-                              tag: index,
-                              child: itemgrid(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            BlocConsumer<ManageLove_Cart_states_cubit, magnageLoveAndCartState>(
+              builder: (context, state) {
+                return cubit.cartItem.length == 0
+                    ? Center(
+                        child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Lottie.asset("assets/animaitons/cartempty.json"),
+                        ],
+                      ))
+                    : islist
+                        ? Expanded(
+                            child: ListView.builder(
+                              itemCount: cubit.cartItem.length,
+                              itemBuilder: (context, index) =>
+                                  customproductitem(
                                 isfavorite: false,
                                 cart: false,
                                 model: cubit.cartItem[index],
                               ),
                             ),
-                            gridDelegate:
-                                const SliverGridDelegateWithFixedCrossAxisCount(
-                                    mainAxisExtent: 350, crossAxisCount: 2),
-                          ),
-                        );
-            },
-            listener: (context, state) {},
-          )
-        ],
+                          )
+                        : Expanded(
+                            child: GridView.builder(
+                              itemCount: cubit.cartItem.length,
+                              itemBuilder: (context, index) => Hero(
+                                tag: index,
+                                child: itemgrid(
+                                  isfavorite: false,
+                                  cart: false,
+                                  model: cubit.cartItem[index],
+                                ),
+                              ),
+                              gridDelegate:
+                                  const SliverGridDelegateWithFixedCrossAxisCount(
+                                      mainAxisExtent: 350, crossAxisCount: 2),
+                            ),
+                          );
+              },
+              listener: (context, state) {},
+            )
+          ],
+        ),
       ),
     );
   }

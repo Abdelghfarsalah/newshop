@@ -1,18 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:null_project/home/cubits/categories/cubit.dart';
+import 'package:null_project/home/cubits/manageLOVEandCARD.dart/manageloveandcardcubit.dart';
 import 'package:null_project/home/homescreen/notification.dart';
 import 'package:null_project/home/model/productmodel.dart';
 import 'package:null_project/home/widgets/detailsbody.dart';
 
-class Details extends StatelessWidget {
+class Details extends StatefulWidget {
   const Details({super.key, required this.model});
   final productmodel model;
 
   @override
+  State<Details> createState() => _DetailsState();
+}
+
+class _DetailsState extends State<Details> {
+  @override
   Widget build(BuildContext context) {
+    var cubti = BlocProvider.of<ManageLove_Cart_states_cubit>(context);
     return Scaffold(
       backgroundColor: Colors.white,
-      key: key,
       appBar: AppBar(
         backgroundColor: Colors.white,
         centerTitle: true,
@@ -32,27 +40,50 @@ class Details extends StatelessWidget {
         ),
         actions: [
           GestureDetector(
-              onTap: () {},
+              onTap: () {
+                {
+                  print(widget.model.isactive);
+                  if (widget.model.isactive) {
+                    cubti.removefromLove(item: widget.model);
+                  } else {
+                    cubti.addtolove(item: widget.model);
+                  }
+                  widget.model.isactive = !widget.model.isactive;
+                  setState(() {});
+                }
+              },
               child: CircleAvatar(
                 radius: 20,
                 backgroundColor: Colors.grey.withOpacity(0.2),
-                child: const Image(
-                  height: 20,
-                  image: AssetImage("assets/images/icon/shopping bag.png"),
+                child: Icon(
+                  Icons.favorite,
+                  color: widget.model.isactive
+                      ? Colors.blue
+                      : Colors.grey.withOpacity(0.7),
                 ),
               )),
           const SizedBox(
             width: 10,
           ),
           GestureDetector(
-            onTap: () {},
+            onTap: () {
+              if (!widget.model.cart) {
+                cubti.addtocart(item: widget.model);
+              } else {
+                cubti.removefromcart(item: widget.model);
+              }
+              widget.model.cart = !widget.model.cart;
+              setState(() {});
+            },
             child: CircleAvatar(
               radius: 20,
               backgroundColor: Colors.grey.withOpacity(0.2),
-              child: const Icon(
+              child: Icon(
                 size: 20,
                 FontAwesomeIcons.cartShopping,
-                color: Colors.grey,
+                color: widget.model.cart
+                    ? Colors.blue
+                    : Colors.grey.withOpacity(0.7),
               ),
             ),
           ),
@@ -62,7 +93,7 @@ class Details extends StatelessWidget {
         ],
       ),
       body: Detailsbody(
-        model: model,
+        model: widget.model,
       ),
     );
   }

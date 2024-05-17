@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class Darweritem extends StatelessWidget {
-  const Darweritem(
+class Draweritem extends StatelessWidget {
+  const Draweritem(
       {super.key,
       required this.title,
       required this.icon,

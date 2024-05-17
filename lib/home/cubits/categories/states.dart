@@ -30,3 +30,5 @@ class getproductSuccess extends categoriesStates {
 }
 
 class getproductFailuer extends categoriesStates {}
+
+class changestate extends categoriesStates {}

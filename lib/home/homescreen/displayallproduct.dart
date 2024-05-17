@@ -4,7 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:null_project/home/cubits/categories/cubit.dart';
 import 'package:null_project/home/cubits/categories/states.dart';
 import 'package:null_project/home/widgets/customproductitem.dart';
-import 'package:null_project/home/widgets/itemList.dart';
+
 import 'package:null_project/home/widgets/itemgrid.dart';
 
 class Displayallproduct extends StatefulWidget {
@@ -26,6 +26,15 @@ class _DisplayallproductState extends State<Displayallproduct> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: false,
+          leading: IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+                BlocProvider.of<Categorecubit>(context).changecategors(i: 0);
+                BlocProvider.of<Categorecubit>(context)
+                    .changecategorswithdata(category: "jewelery");
+              },
+              icon: const Icon(Icons.arrow_back_ios)),
           title: const Text(
             "Products",
             style: TextStyle(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:null_project/constant.dart';
 import 'package:null_project/home/cubits/bottomNavBar/cubit.dart';
 import 'package:null_project/home/cubits/bottomNavBar/states.dart';
 import 'package:null_project/home/cubits/categories/cubit.dart';
@@ -18,10 +18,9 @@ class _homeState extends State<home> {
   var contr = ZoomDrawerController();
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     BlocProvider.of<Categorecubit>(context)
-        .getcategory(category: "electronics", index: 0);
+        .getcategory(category: "jewelery", index: 0);
   }
 
   @override

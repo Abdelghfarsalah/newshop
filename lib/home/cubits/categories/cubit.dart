@@ -40,7 +40,8 @@ class Categorecubit extends Cubit<categoriesStates> {
       emit(Loading());
       List<productmodel> result = [];
       Dio dio = Dio();
-      Response<dynamic> l =await dio.get("https://fakestoreapi.com/products/category/$category");
+      Response<dynamic> l =
+          await dio.get("https://fakestoreapi.com/products/category/$category");
 
       for (var element in l.data) {
         result.add(productmodel.fromjson(element));
