@@ -159,10 +159,10 @@ class _registerState extends State<register> {
                                 password: password);
                             BlocProvider.of<registercubit>(context)
                                 .registernew(user: model);
-                            // useremail = email;
-                            // userfirstname = firstname;
-                            // userlastname = lastname;
-                            // userpassword = password;
+                            useremail = email;
+                            userfirstname = firstname;
+                            userlastname = lastname;
+                            userpassword = password;
                           }
                         },
                         text: "Register");

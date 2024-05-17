@@ -50,7 +50,7 @@ class SmartpuyApp extends StatelessWidget {
       ],
       child: const MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: home(),
+        home: Onboard_home(),
       ),
     );
   }

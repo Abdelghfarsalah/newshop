@@ -27,6 +27,7 @@ class _FavoriteState extends State<Favorite> {
 
     return Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           title: const Text(
             "Your Favorite",
             style: TextStyle(

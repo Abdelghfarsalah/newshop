@@ -1,9 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:null_project/constant.dart';
+import 'package:null_project/home/cubits/bottomNavBar/cubit.dart';
 import 'package:null_project/loginAndRegister/widgets/custombutton.dart';
 
-class editscreen extends StatelessWidget {
+class editscreen extends StatefulWidget {
   const editscreen({super.key});
+
+  @override
+  State<editscreen> createState() => _editscreenState();
+}
+
+class _editscreenState extends State<editscreen> {
+  String firstname = "";
+  String lastname = "";
+  String email = "";
+  String password = "";
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +38,7 @@ class editscreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Stack(
@@ -67,14 +80,48 @@ class editscreen extends StatelessWidget {
                       )),
                 ],
               ),
-              const Changeinfo(
-                  title: "First Name", hint: "abdelghfar", pass: false),
-              const Changeinfo(title: "Last Name", hint: "salah", pass: false),
-              const Changeinfo(
-                  title: "Email", hint: "abdelghfar8@gmail.com", pass: false),
-              const Changeinfo(title: "Password", hint: "012354", pass: false),
+              Changeinfo(
+                  onChanged: (data) {
+                    firstname = data;
+                  },
+                  title: "First Name",
+                  hint: "abdelghfar",
+                  pass: false),
+              Changeinfo(
+                  onChanged: (data) {
+                    lastname = data;
+                  },
+                  title: "Last Name",
+                  hint: "salah",
+                  pass: false),
+              Changeinfo(
+                  onChanged: (data) {
+                    email = data;
+                  },
+                  title: "Email",
+                  hint: "abdelghfar8@gmail.com",
+                  pass: false),
+              Changeinfo(
+                  onChanged: (data) {
+                    password = data;
+                  },
+                  title: "Password",
+                  hint: "012354",
+                  pass: false),
               GestureDetector(
                 onTap: () {
+                  if (email.length != 0) {
+                    useremail = email;
+                  }
+                  if (lastname.length != 0) {
+                    userlastname = lastname;
+                  }
+                  if (firstname.length != 0) {
+                    userfirstname = firstname;
+                  }
+                  if (password.length != 0) {
+                    userpassword = password;
+                  }
                   showDialog(
                       context: context,
                       builder: (context) => AlertDialog(
@@ -103,6 +150,8 @@ class editscreen extends StatelessWidget {
                                       onPressed: () {
                                         Navigator.pop(context);
                                         Navigator.pop(context);
+                                        BlocProvider.of<NavBarcubit>(context)
+                                            .changescreen(index: 0);
                                       },
                                       child: const Text(
                                         "Go To Your Profile",
@@ -145,10 +194,15 @@ class editscreen extends StatelessWidget {
 
 class Changeinfo extends StatelessWidget {
   const Changeinfo(
-      {super.key, required this.title, required this.hint, required this.pass});
+      {super.key,
+      required this.title,
+      required this.hint,
+      required this.pass,
+      this.onChanged});
   final String title;
   final String hint;
   final bool pass;
+  final void Function(String)? onChanged;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -164,6 +218,7 @@ class Changeinfo extends StatelessWidget {
             height: 5,
           ),
           TextField(
+            onChanged: onChanged,
             decoration: InputDecoration(
               border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),

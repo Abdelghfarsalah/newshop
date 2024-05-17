@@ -99,6 +99,7 @@ flutter:
     - assets/images/icon/
     - assets/splash.png
     - assets/images/smartshop.png
+    - assets/background.jpg
     - assets/images/LoginAndRegister/Login/
     - assets/images/LoginAndRegister/register/
     - assets/images/LoginAndRegister/forgetpass/

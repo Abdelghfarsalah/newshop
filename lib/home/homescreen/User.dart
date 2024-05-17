@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:null_project/constant.dart';
+import 'package:null_project/home/homescreen/userscreen/about.dart';
 import 'package:null_project/home/homescreen/userscreen/editscreen.dart';
 import 'package:null_project/home/widgets/Draweritem.dart';
 import 'package:null_project/loginAndRegister/Login.dart';
@@ -20,6 +21,7 @@ class _fourState extends State<four> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: const Text(
           "Profile",
           style: TextStyle(fontSize: 27, fontWeight: FontWeight.bold),
@@ -55,9 +57,9 @@ class _fourState extends State<four> {
             const SizedBox(height: 10),
             Column(
               children: [
-                const Text(
-                  "John Wick",
-                  style: TextStyle(
+                Text(
+                  "$userfirstname",
+                  style: const TextStyle(
                       fontFamily: Farro,
                       fontSize: 22,
                       fontWeight: FontWeight.bold),
@@ -65,7 +67,7 @@ class _fourState extends State<four> {
                   overflow: TextOverflow.ellipsis,
                 ),
                 Text(
-                  "Actor",
+                  "$userlastname",
                   style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w700,
@@ -95,15 +97,18 @@ class _fourState extends State<four> {
                     child: Column(
                       children: [
                         ListTile(
-                          trailing: IconButton(
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => editscreen()));
-                              },
-                              icon: const Icon(Icons.arrow_forward_ios)),
-                          title: const Text("Edit Profile"),
+                          title: Text("${useremail} "),
+                          leading: const Icon(Icons.email, color: Colors.blue),
+                        ),
+                        Divider(
+                          height: 1,
+                          color: Colors.grey.withOpacity(0.5),
+                          thickness: 1,
+                          endIndent: 10,
+                          indent: 10,
+                        ),
+                        ListTile(
+                          title: Text("${userlastname}"),
                           leading: const Icon(FontAwesomeIcons.solidCircleUser,
                               color: Colors.blue),
                         ),
@@ -116,25 +121,15 @@ class _fourState extends State<four> {
                         ),
                         ListTile(
                           trailing: IconButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => editscreen()));
+                              },
                               icon: const Icon(Icons.arrow_forward_ios)),
-                          title: const Text("Setting"),
-                          leading:
-                              const Icon(Icons.settings, color: Colors.blue),
-                        ),
-                        Divider(
-                          height: 1,
-                          color: Colors.grey.withOpacity(0.5),
-                          thickness: 1,
-                          endIndent: 10,
-                          indent: 10,
-                        ),
-                        ListTile(
-                          trailing: IconButton(
-                              onPressed: () {},
-                              icon: const Icon(Icons.arrow_forward_ios)),
-                          title: const Text("Help Center "),
-                          leading: const Icon(FontAwesomeIcons.alignCenter,
+                          title: const Text("Edit Profile"),
+                          leading: const Icon(FontAwesomeIcons.pencil,
                               color: Colors.blue),
                         ),
                         Divider(
@@ -146,7 +141,12 @@ class _fourState extends State<four> {
                         ),
                         ListTile(
                           trailing: IconButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => Aboutscreen()));
+                              },
                               icon: const Icon(Icons.arrow_forward_ios)),
                           title: const Text("About us"),
                           leading: const Icon(FontAwesomeIcons.users,
@@ -185,7 +185,7 @@ class _fourState extends State<four> {
                       color: Colors.red,
                     )),
                 title: const Text(
-                  "LOgouft",
+                  "LOgouf",
                   style: TextStyle(
                       fontSize: 22, color: Colors.red, fontFamily: Farro),
                 ),

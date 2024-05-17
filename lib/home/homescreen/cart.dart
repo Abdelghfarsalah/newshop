@@ -22,6 +22,7 @@ class _threeState extends State<three> {
     var cubit = BlocProvider.of<ManageLove_Cart_states_cubit>(context);
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: const Text(
           "Cart",
           style: TextStyle(

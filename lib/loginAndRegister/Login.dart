@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:null_project/constant.dart';
 import 'package:null_project/home/home.dart';
 import 'package:null_project/loginAndRegister/cubits/logincubit/cubit.dart';
 import 'package:null_project/loginAndRegister/cubits/logincubit/states.dart';
@@ -126,6 +127,10 @@ class _loginState extends State<login> {
                     return Custombutton(
                         onTap: () {
                           if (keyform.currentState!.validate()) {
+                            useremail = emial;
+                            userpassword = password;
+                            userfirstname = "Abdelghfar";
+                            userlastname = "Khairallah";
                             BlocProvider.of<logincubit>(context)
                                 .login(email: emial, pass: password);
                           }
@@ -151,7 +156,6 @@ class _loginState extends State<login> {
                         backgroundColor: Colors.blue,
                         textColor: Colors.white,
                         fontSize: 16.0);
-
                     Navigator.of(context)
                         .push(MaterialPageRoute(builder: (context) => home()));
                   }
