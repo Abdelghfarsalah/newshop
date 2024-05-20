@@ -185,7 +185,7 @@ class _fourState extends State<four> {
                       color: Colors.red,
                     )),
                 title: const Text(
-                  "LOgouf",
+                  "LOgout",
                   style: TextStyle(
                       fontSize: 22, color: Colors.red, fontFamily: Farro),
                 ),

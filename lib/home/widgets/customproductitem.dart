@@ -38,7 +38,7 @@ class _customproductitemState extends State<customproductitem> {
         },
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 15),
-          height: MediaQuery.sizeOf(context).height * 0.23,
+          height: MediaQuery.sizeOf(context).height * 0.249,
           child: Row(
             children: [
               Container(

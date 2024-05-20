@@ -1,3 +1,4 @@
+import 'package:device_preview_minus/device_preview_minus.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -30,7 +31,9 @@ void main() async {
       statusBarColor: Colors.transparent,
       systemNavigationBarIconBrightness: Brightness.dark,
       systemNavigationBarColor: Colors.transparent));
-  runApp(const SmartpuyApp());
+  runApp(
+    const SmartpuyApp(),
+  );
 }
 
 class SmartpuyApp extends StatelessWidget {
