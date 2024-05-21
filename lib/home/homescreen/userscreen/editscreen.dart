@@ -92,21 +92,21 @@ class _editscreenState extends State<editscreen> {
                     lastname = data;
                   },
                   title: "Last Name",
-                  hint: "salah",
+                  hint: userlastname!,
                   pass: false),
               Changeinfo(
                   onChanged: (data) {
                     email = data;
                   },
                   title: "Email",
-                  hint: "abdelghfar8@gmail.com",
+                  hint: "${useremail}",
                   pass: false),
               Changeinfo(
                   onChanged: (data) {
                     password = data;
                   },
                   title: "Password",
-                  hint: "012354",
+                  hint: "${userpassword}",
                   pass: false),
               GestureDetector(
                 onTap: () {

@@ -5,6 +5,7 @@ import 'package:null_project/constant.dart';
 import 'package:null_project/home/cubits/bottomNavBar/cubit.dart';
 import 'package:null_project/home/cubits/bottomNavBar/states.dart';
 import 'package:null_project/home/cubits/categories/cubit.dart';
+import 'package:null_project/home/homescreen/search.dart';
 import 'package:null_project/home/widgets/customNavBar.dart';
 
 class home extends StatefulWidget {
@@ -34,6 +35,18 @@ class _homeState extends State<home> {
             return cubit.screen[cubit.currentindex];
           },
         ),
+        floatingActionButton: FloatingActionButton(
+          shape: CircleBorder(),
+          onPressed: () {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => searchpage()));
+          },
+          child: SizedBox(
+            width: 40,
+            child: Image.asset("assets/images/icon/Search.png"),
+          ),
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.miniEndFloat,
         bottomNavigationBar: const customNavBar());
   }
 }

@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -223,41 +224,75 @@ class _homepageState extends State<homepage> {
               Padding(
                 padding: const EdgeInsets.only(top: 20.0),
                 child: SizedBox(
-                  height: 40,
-                  child: Row(
-                    children: [
-                      Expanded(
-                          child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                        child: TextField(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => searchpage()));
-                          },
-                          decoration: InputDecoration(
-                            suffixIcon: SizedBox(
-                              width: 40,
-                              child:
-                                  Image.asset("assets/images/icon/Search.png"),
-                            ),
-                            hintText: "Enter the Name of product ",
-                            contentPadding: const EdgeInsets.only(
-                                left: 10, top: 0, bottom: 0, right: 0),
-                            filled: true,
-                            fillColor: Colors.blue.withOpacity(0.05),
-                            border: const OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.blue),
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(10),
-                              ),
-                            ),
+                  height: MediaQuery.sizeOf(context).height * 0.2,
+                  width: MediaQuery.sizeOf(context).width,
+                  child: CarouselSlider(
+                      items: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: Container(
+                            decoration: const BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20)),
+                                image: DecorationImage(
+                                    fit: BoxFit.fill,
+                                    image: AssetImage(
+                                        "assets/images/Slider/176092Image1.jpg"))),
                           ),
                         ),
-                      )),
-                    ],
-                  ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: Container(
+                            decoration: const BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20)),
+                                image: DecorationImage(
+                                    fit: BoxFit.fill,
+                                    image: AssetImage(
+                                        "assets/images/Slider/b8118f49bc04df897f1db47f43a6f6bd.jpg"))),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: Container(
+                            decoration: const BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20)),
+                                image: DecorationImage(
+                                    fit: BoxFit.fill,
+                                    image: AssetImage(
+                                        "assets/images/Slider/pngtree-3d-shopping-promotion-e-commerce-blue-background-picture-image_1908129.jpg"))),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: Container(
+                            decoration: const BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20)),
+                                image: DecorationImage(
+                                    fit: BoxFit.fill,
+                                    image: AssetImage(
+                                        "assets/images/Slider/pngtree-online-shopping-in-kazakhstan-a-stunning-3d-rendering-for-social-media-image_3684196.jpg"))),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: Container(
+                            decoration: const BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20)),
+                                image: DecorationImage(
+                                    fit: BoxFit.fill,
+                                    image: AssetImage(
+                                        "assets/images/Slider/pngtree-shopping-mall-supermarket-selection-merchandise-poster-background-material-image_133225.jpg"))),
+                          ),
+                        ),
+                      ],
+                      options: CarouselOptions(
+                          autoPlay: true,
+                          autoPlayAnimationDuration:
+                              Duration(milliseconds: 100))),
                 ),
               ),
               const SizedBox(
@@ -281,7 +316,7 @@ class _homepageState extends State<homepage> {
                 return Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: SizedBox(
-                    height: MediaQuery.sizeOf(context).height * 0.8,
+                    height: MediaQuery.sizeOf(context).height * 0.5,
                     child: ListView.builder(
                         itemCount: state.res.length,
                         itemBuilder: (context, index) => customproductitem(
@@ -358,3 +393,38 @@ class _homepageState extends State<homepage> {
     );
   }
 }
+/*
+Row(
+                    children: [
+                      Expanded(
+                          child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                        child: TextField(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => searchpage()));
+                          },
+                          decoration: InputDecoration(
+                            suffixIcon: SizedBox(
+                              width: 40,
+                              child:
+                                  Image.asset("assets/images/icon/Search.png"),
+                            ),
+                            hintText: "Enter the Name of product ",
+                            contentPadding: const EdgeInsets.only(
+                                left: 10, top: 0, bottom: 0, right: 0),
+                            filled: true,
+                            fillColor: Colors.blue.withOpacity(0.05),
+                            border: const OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.blue),
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(10),
+                              ),
+                            ),
+                          ),
+                        ),
+                      )),
+                    ],
+                  ), */

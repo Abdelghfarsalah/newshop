@@ -17,7 +17,9 @@ class buybage extends StatefulWidget {
 
 class _buybageState extends State<buybage> {
   int indexselext = 0;
-
+  var snackBar = const SnackBar(
+    content: Text('Your purchase was completed successfully'),
+  );
   @override
   Widget build(BuildContext context) {
     dynamic price = widget!.model.price * 100;
@@ -204,9 +206,7 @@ class _buybageState extends State<buybage> {
                   currency: "EGP",
                   amountInCents: "${price}",
                   onPayment: (response) {
-                    Fluttertoast.showToast(
-                        msg: " Completed Process",
-                        backgroundColor: Colors.green);
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
                   },
                 );
               },
